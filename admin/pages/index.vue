@@ -16,18 +16,18 @@
 
     <div class="container-fluid browsing-history">
       <div class="row">
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-6 br bb">
+        <div v-for="(product, index) in products" :key="product._id" class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-6 br bb">
           <div class="history-box">
             <div class="a-spacing-large"></div>
             <!-- product image -->
             <a href="#" class="a-link-normal">
-              <img src="" alt="" class="img-fluid">
+              <img :src="product.photo" alt="" class="img-fluid">
             </a>
             <!-- product title -->
             <div class="a-spacing-top-base asin-title">
               <span class="a-text-normal">
                 <div class="p13n-sc-truncated">
-                  product title
+                  {{product.title}}
                 </div>
               </span>
             </div>
@@ -49,7 +49,7 @@
               <span class="a-letter-space"></span>
               <span class="a-size-base a-color-price">
                 <span class="p13n-sc-price">
-                  23$
+                  {{product.price}}$
                 </span>
               </span>
             </div>
@@ -69,6 +69,16 @@
 
 <script>
 
-export default {}
+export default {
+  async asyncData({ $axios }) {
+    try {
+      let response = await $axios.get("http://localhost:3000/api/products");
+      console.log(response.data.products)
+      return {products:response.data.products}
+    } catch (error) {
+      
+    }
+  }
+}
 </script>
 
