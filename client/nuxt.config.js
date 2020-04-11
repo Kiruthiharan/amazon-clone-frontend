@@ -1,6 +1,11 @@
+const URL = 'http://localhost:3000'
+
 
 export default {
   mode: 'universal',
+  server: {
+    port: 9000, // default: 3000
+  },
   /*
   ** Headers of the page
   */
@@ -51,6 +56,8 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    proxy: true,
+    baseURL : URL
   },
   /*
   ** Build configuration
