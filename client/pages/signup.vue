@@ -17,19 +17,31 @@
                                 <!-- your name  -->
                                 <div class="a-row a-spacing-base">
                                     <label for="ap_customer_name" class="a-form-label">Your name</label>
-                                    <input type="text" id="ap_customer_name" class="a-input-text form-control auth-autofocus auth-required-field auth-contact-verification-request-info">
+                                    <input 
+                                        type="text" 
+                                        id="ap_customer_name" 
+                                        class="a-input-text form-control auth-autofocus auth-required-field auth-contact-verification-request-info"
+                                        v-model="name">
                                 </div>
 
                                 <!-- email  -->
                                 <div class="a-row a-spacing-base">
                                     <label for="ap_customer_name" class="a-form-label">Email</label>
-                                    <input type="email" id="ap_customer_name" class="a-input-text form-control auth-autofocus auth-required-field auth-contact-verification-request-info">
+                                    <input 
+                                        type="email" 
+                                        id="ap_customer_name" 
+                                        class="a-input-text form-control auth-autofocus auth-required-field auth-contact-verification-request-info"
+                                        v-model="email">
                                 </div>
 
                                 <!-- password  -->
                                 <div class="a-row a-spacing-base">
                                     <label for="ap_customer_name" class="a-form-label">Password</label>
-                                    <input type="password" id="ap_customer_name" class="a-input-text form-control auth-autofocus auth-required-field auth-contact-verification-request-info">
+                                    <input 
+                                        type="password" 
+                                        id="ap_customer_name" 
+                                        class="a-input-text form-control auth-autofocus auth-required-field auth-contact-verification-request-info"
+                                        v-model="password">
                                     <div class="a-alert-container">
                                         <div class="a-alert-content">Password must be atleast 6 charachters</div>
                                     </div>
@@ -39,7 +51,7 @@
                                 <div class="a-row a-spacing-extra-large mb-4">
                                     <span class="a-button-primary">
                                         <span class="a-button-inner">
-                                            <span class="a-button-text">Create your amazon account</span>
+                                            <span class="a-button-text" @click="onSignup">Create your amazon account</span>
                                         </span>
                                     </span>
                                     <div class="a-row a-sapcing-top-medium a-size-small">
@@ -73,6 +85,43 @@
 
 <script>
 export default {
-    layout: "none"
+    layout: "none",
+
+    data(){
+        return {
+            name:"",
+            email: "",
+            password:""
+        }
+    },
+
+    methods: {
+        async onSignup() {
+            console.log("aas");
+            try {
+                let data = {
+                    name: this.name,
+                    email: this.email,
+                    password: this.password
+                }
+
+                let response = await this.$axios.$post("/api/auth/signup", data);
+                console.log(response);
+
+                if(response.success) {
+                    this.$auth.loginWith("local", {
+                        data: {
+                            email: this.email,
+                            password: this.password
+                        }
+                    });
+
+                    this.$router.push("/");
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
 }
 </script>
