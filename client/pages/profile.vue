@@ -7,23 +7,24 @@
                     <div class="a-section">
                         <div class="a-spacing-top-medium"></div>
                         <h2 style="text-align: center">My Profile</h2>
+                        <a href="#" @click="onLogout">Log Out</a>
                         <form action="">
                             <!-- Name -->
                             <div class="a-spacing-top-medium">
                                 <label style="margin-bottom: 0px;">Name</label>
-                                <input type="text" class="a-input-text" style="width: 100%"  v-model="type" :placeholder="$auth.$state.user.name">
+                                <input type="text" class="a-input-text" style="width: 100%"  v-model="name" :placeholder="$auth.$state.user.name">
                             </div>
 
                             <!-- Email -->
                             <div class="a-spacing-top-medium">
                                 <label style="margin-bottom: 0px;">Email</label>
-                                <input type="text" class="a-input-text" style="width: 100%"  v-model="type" :placeholder="$auth.$state.user.email">
+                                <input type="text" class="a-input-text" style="width: 100%"  v-model="email" :placeholder="$auth.$state.user.email">
                             </div>
 
                             <!-- Password -->
                             <div class="a-spacing-top-medium">
                                 <label style="margin-bottom: 0px;">Password</label>
-                                <input type="text" class="a-input-text" style="width: 100%"  v-model="type">
+                                <input type="text" class="a-input-text" style="width: 100%"  v-model="password">
                             </div>
 
                             <div class="a-spacing-top-large">
@@ -54,9 +55,36 @@ export default {
     data() {
         return {
             name: "",
-            email:""
+            email:"",
+            password:""
         };
     },
+
+    methods: {
+        async onUpdateProfile() {
+            let data = {
+                name: this.name,
+                email: this.email,
+                password: this.password
+            }
+            try {
+                let response = await this.$axios.$put('/api/auth/user', data);
+
+                if (response.success) {
+                    this.name = "";
+                    this.email = "";
+                    this.password = "";
+
+                    await this.$auth.fetchUser();
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async onLogout() {
+            await this.$auth.logout();
+        }
+    }
 
 
 }
