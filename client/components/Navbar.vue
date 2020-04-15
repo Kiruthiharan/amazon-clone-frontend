@@ -6,9 +6,9 @@
                     <!-- logo -->
                     <div class="col-sm-2">
                         <div class="logo-area">
-                            <a href="#">
+                            <nuxt-link to="/">
                             <img src="/img/logo.png" alt="Logo" class="img-fluid"/>
-                            </a>
+                            </nuxt-link>
                         </div>
                     </div>
                     <!-- search bar -->
@@ -78,7 +78,7 @@
                             <span class="icp-nav-link-border"></span>
 
                             <template v-if="$auth.$state.loggedIn">
-                                <nuxt-link to="/register" class="nav-a nav-a-2" id="nav-link-accountList" tabindex="0">
+                                <nuxt-link to="/profile" class="nav-a nav-a-2" id="nav-link-accountList" tabindex="0">
                                     <span class="nav-line-1">Hello, </span>
                                     <span class="nav-line-2">
                                         {{ $auth.$state.user.name}}
@@ -86,7 +86,7 @@
                                 </nuxt-link>
                             </template>
                             <template v-else>
-                                <nuxt-link to="/register" class="nav-a nav-a-2" id="nav-link-accountList" tabindex="0">
+                                <nuxt-link to="/signup" class="nav-a nav-a-2" id="nav-link-accountList" tabindex="0">
                                     <span class="nav-line-1">Hello, Sign in</span>
                                     <span class="nav-line-2">
                                         Account &amp; Lists

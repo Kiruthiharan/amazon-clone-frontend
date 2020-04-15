@@ -6,27 +6,36 @@
                 <div class="col-sm-6">
                     <div class="a-section">
                         <div class="a-spacing-top-medium"></div>
-                        <h2 style="text-align: center">Add a new Category</h2>
+                        <h2 style="text-align: center">My Profile</h2>
                         <form action="">
-                            <!-- title -->
+                            <!-- Name -->
                             <div class="a-spacing-top-medium">
-                                <label style="margin-bottom: 0px;">Type</label>
+                                <label style="margin-bottom: 0px;">Name</label>
+                                <input type="text" class="a-input-text" style="width: 100%"  v-model="type" :placeholder="$auth.$state.user.name">
+                            </div>
+
+                            <!-- Email -->
+                            <div class="a-spacing-top-medium">
+                                <label style="margin-bottom: 0px;">Email</label>
+                                <input type="text" class="a-input-text" style="width: 100%"  v-model="type" :placeholder="$auth.$state.user.email">
+                            </div>
+
+                            <!-- Password -->
+                            <div class="a-spacing-top-medium">
+                                <label style="margin-bottom: 0px;">Password</label>
                                 <input type="text" class="a-input-text" style="width: 100%"  v-model="type">
                             </div>
 
                             <div class="a-spacing-top-large">
                                 <span class="a-button-register">
                                     <span class="a-button-inner">
-                                        <span class="a-button-text" @click="onAddCategory">Add Category</span>                                    
+                                        <span class="a-button-text" @click="onUpdateProfile">Update Profile</span>                                    
                                     </span>
                                 </span>
                             </div>
                         </form>
 
                         <br>
-                        <ul class="list-group-item">
-                            <li v-for="category of categories" :key="category._id">{{category.type}}</li>
-                        </ul>
 
                     </div>
                 </div>
