@@ -7,6 +7,7 @@ const _db17a568 = () => interopDefault(import('..\\pages\\login.vue' /* webpackC
 const _7d6a3e68 = () => interopDefault(import('..\\pages\\profile.vue' /* webpackChunkName: "pages_profile" */))
 const _086b6945 = () => interopDefault(import('..\\pages\\signup.vue' /* webpackChunkName: "pages_signup" */))
 const _8a36b08e = () => interopDefault(import('..\\pages\\products\\_id.vue' /* webpackChunkName: "pages_products__id" */))
+const _7d5783ec = () => interopDefault(import('..\\pages\\reviews\\_id.vue' /* webpackChunkName: "pages_reviews__id" */))
 const _6e66eb96 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
 // TODO: remove in Nuxt 3
@@ -41,6 +42,10 @@ export const routerOptions = {
     path: "/products/:id?",
     component: _8a36b08e,
     name: "products-id"
+  }, {
+    path: "/reviews/:id?",
+    component: _7d5783ec,
+    name: "reviews-id"
   }, {
     path: "/",
     component: _6e66eb96,
