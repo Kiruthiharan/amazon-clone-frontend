@@ -154,7 +154,7 @@ export default {
                 let response = await this.$axios.post('/api/reviews/'+this.$route.params.id, data);
                 console.log(response);
                 if(response.data.success){
-                    this.$router.push('products/'+this.$route.params.id)
+                    this.$router.push('/products/'+this.$route.params.id)
                 }
 
                 

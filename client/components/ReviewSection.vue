@@ -6,7 +6,7 @@
         <div class="col-lg-4 col-md-5 col-sm-12">
           <!-- Total Customer reviews -->
           <a href="#" class="a-color-base">
-            <h2>1,354 customer reviews</h2>
+            <h2>{{product.reviews.length}} customer reviews</h2>
           </a>
           <div class="cr-widget-ACR">
             <i class="fas fa-star"></i>
@@ -149,7 +149,7 @@
             <!-- Link to another Review page -->
             <span class="a-button-base writeReviewButton cm-cr-button-wide">
               <span class="a-button-inner">
-                <a href="#" class="a-button-text">Write a customer review</a>
+                <nuxt-link :to="`/reviews/${product._id}`" class="a-button-text">Write a customer review</nuxt-link>
               </span>
             </span>
           </div>
@@ -164,7 +164,7 @@
             <h3>Customer images</h3>
             <!-- Review Images -->
             <div class="a-spacing-small a-spacing-top-small">
-              <img class="img-fluid" width="22.5%" />
+              <img class="img-fluid" width="22.5%" v-for="review in reviews" :key="review._id" :src="review.photo"/>
             </div>
             <div>
               <a href="#">See all customer images</a>
@@ -247,7 +247,7 @@
             <div class="card-padding">
               <div class="review-header">
                 <h3>
-                  <span class="a-size-base">Showing 1-8 of 1,354 reviews</span>
+                  <span class="a-size-base">Showing 1-8 of {{product.reviews.length}} reviews</span>
                 </h3>
               </div>
               <div class="review-sort-type">
@@ -274,7 +274,7 @@
                     </div>
                     <!-- Review Owner -->
                     <div class="profile-content">
-                      <span class="a-profile-name">{{review.user}}</span>
+                      <span class="a-profile-name">{{review.user.name}}</span>
                     </div>
                   </a>
                 </div>
@@ -321,7 +321,7 @@
             <div class="a-row">
               <span class="a-button a-button-base writeReviewButton" id="a-autoid-15">
                 <span class="a-button-inner">
-                  <a href="#" class="a-button-text" role="button">Write a customer review</a>
+                  <nuxt-link :to="`/reviews/${product._id}`" class="a-button-text" role="button">Write a customer review</nuxt-link>
                 </span>
               </span>
             </div>
