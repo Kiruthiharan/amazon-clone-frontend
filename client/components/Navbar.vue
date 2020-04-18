@@ -29,7 +29,7 @@
                                 <div class="nav-sprite" id="nav-packard-glow-loc-icon"></div>
                                 <div id="glow-ingress-block">
                                     <span class="nav-line-1" id="glow-ingress-line1">Deliver to</span>
-                                    <span class="nav-line-2" id="glow-ingress-line1">{{$auth.$state.user.address.city}}</span>
+                                    <!-- <span v-if ="$auth.$state" class="nav-line-2" id="glow-ingress-line1">{{$auth.$state.user.address.city}}</span> -->
                                 </div>
                             </nuxt-link>
                         </div>
@@ -104,7 +104,7 @@
                                 <span aria-hidden="true" class="nav-line-1"></span>
                                 <span aria-hidden="true" class="nav-line-2">Cart</span>
                                 <span class="nav-cart-icon nav-sprite"></span>
-                                <span aria-hidden="true" id="nav-cart-count" class="nav-cart-count nav-cart-0">0</span>
+                                <span aria-hidden="true" id="nav-cart-count" class="nav-cart-count nav-cart-0">{{getCartLength}}</span>
                             </nuxt-link>
                         </div>
                     </div>
@@ -115,10 +115,14 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
 import Search from '~/components/Search.vue';
 export default {
   components: {
     Search
+  },
+  computed: {
+      ...mapGetters(["getCartLength"])
   }
 }
 </script>
